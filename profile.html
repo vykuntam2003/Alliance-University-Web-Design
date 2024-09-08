@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Profile</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+          <div class="toggle-btn">
+            <i class='bx bx-plus'></i>
+          </div>
+          <span style="--i:1;">
+            <a href="index.html"><i class='bx bxs-home'></i></a>
+          </span>
+          <span style="--i:2;">
+            <a href="profile.html"><i class='bx bxs-user'></i></a>
+          </span>
+          
+          <span style="--i:4;">
+            <a href="game.html"><i class='bx bxs-game' ></i></a>
+          </span>
+          <span style="--i:5;">
+            <a href="#"><i class='fas fa-sign-out-alt' ></i></a>
+          </span>
+        </div>
+      </nav>
+    <div class="hero">
+        <div class="card">
+            <div class="user-info-body" id="userInfo">
+                <!-- Saved information will be displayed here -->
+            </div>
+            <img src="images/fire.jpg" id="profile-pic">
+            <label for="input-file">Update Image</label>
+            <div class="div">
+            <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"></div>
+            
+        </div>
+        <div class="class">
+        <!-- Image after the card -->
+     <a href="form.html">  <img src="images/pen.png" alt="Image Description" class="right-side-image"></a>
+        </div>
+    </div>
+
+    <script>
+        let profilepic = document.getElementById("profile-pic");
+        let inputfile = document.getElementById("input-file");
+        inputfile.onchange=function(){
+            profilepic.src = URL.createObjectURL(inputfile.files[0])
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var userInfoContainer = document.getElementById("userInfo");
+
+            // Retrieve saved information from local storage
+            var savedInfoData = JSON.parse(localStorage.getItem("savedInfoData")) || {};
+
+            // Create HTML content to display saved information with icons
+            var userInfoHTML = "<div><h1>" + savedInfoData.name + "</h1></div>" +
+                                "<div><p>" + savedInfoData.email + "</p></div>" ;
+                                
+
+            // Update the userInfoContainer with the saved information and icons
+            userInfoContainer.innerHTML = userInfoHTML;
+        });
+        const nav = document.querySelector("nav"),
+        toggleBtn = nav.querySelector(".toggle-btn");
+
+    toggleBtn.addEventListener("click" , () =>{
+      nav.classList.toggle("open");
+    });
+
+  // js code to make draggable nav
+  function onDrag({movementY}) { //movementY gets mouse vertical value
+    const navStyle = window.getComputedStyle(nav), //getting all css style of nav
+          navTop = parseInt(navStyle.top), // getting nav top value & convert it into string
+          navHeight = parseInt(navStyle.height), // getting nav height value & convert it into string
+          windHeight = window.innerHeight; // getting window height
+
+    nav.style.top = navTop > 0 ? `${navTop + movementY}px` : "1px";
+    if(navTop > windHeight - navHeight){
+      nav.style.top = `${windHeight - navHeight}px`;
+    }
+  }
+
+  //this function will call when user click mouse's button and  move mouse on nav
+  nav.addEventListener("mousedown", () =>{
+    nav.addEventListener("mousemove", onDrag);
+  });
+
+  //these function will call when user relase mouse button and leave mouse from nav
+  nav.addEventListener("mouseup", () =>{
+    nav.removeEventListener("mousemove", onDrag);
+  });
+  nav.addEventListener("mouseleave", () =>{
+    nav.removeEventListener("mousemove", onDrag);
+  });
+
+    </script>
+</body>
+</html>
