@@ -155,75 +155,7 @@
         </div>
     </section>
 
-    <!-- <script type="module">
-        const wrapper = document.querySelector(".wrapper"),
-          signupHeader = document.querySelector(".signup header"),
-          loginHeader = document.querySelector(".login header");
-        loginHeader.addEventListener("click", () => {
-          wrapper.classList.add("active");
-        });
-        signupHeader.addEventListener("click", () => {
-          wrapper.classList.remove("active");
-        });
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-
-        const firebaseConfig = {
-          apiKey: "AIzaSyBd-AsuDSyYd_ZMeWDB3he7XruFhkf75k8",
-          authDomain: "fsdpro-c2924.firebaseapp.com",
-          projectId: "fsdpro-c2924",
-          storageBucket: "fsdpro-c2924.appspot.com",
-          messagingSenderId: "77533127800",
-          appId: "1:77533127800:web:2fdbcf46cbd823d215f98d"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        document.getElementById("submit").addEventListener('click', function(e){
-          e.preventDefault();
-          set(ref(db, 'user/' + document.getElementById("username").value), {
-            username: document.getElementById("username").value,
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value
-          });
-          alert("Signup Successful!");
-        });
-
-        // Handling login
-        document.getElementById("loginSubmit").addEventListener('click', function(e) {
-          e.preventDefault();
-
-          const email = document.getElementById("username1").value;
-          const password = document.getElementById("password1").value;
-
-          // Retrieve signup information from Firebase
-          get(child(ref(db), 'user')).then((snapshot) => {
-              if (snapshot.exists()) {
-                  // Iterate through each user in the database
-                  snapshot.forEach((childSnapshot) => {
-                      const userData = childSnapshot.val();
-                      // Check if email and password match signup information
-                      if (userData.email === email && userData.password === password) {
-                          // If match found, login is successful
-                          alert("Login successful!");
-                          // Redirect to project_dash.html
-                          window.location.href = "project_dash.html";
-                          return;
-                      }
-                  });
-                  // If no match found, login failed
-                  
-              } else {
-                  // No users found in database
-                  
-              }
-          }).catch((error) => {
-              console.error("Error retrieving data: ", error);
-          });
-        });
-    </script> -->
 
     <script type="module">
 
@@ -284,8 +216,8 @@ const wrapper = document.querySelector(".wrapper"),
                           // If match found, login is successful
                           alert("Login successful!");
                           // Redirect to project_dash.html
-                          window.location.href = "project_dash.html";
-                          return;
+                          window.location.href = "index.html";
+                         return;
                       }
                   });
                   // If no match found, login failed
